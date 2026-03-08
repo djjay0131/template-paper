@@ -1,0 +1,180 @@
+% ============================================================
+% Sample Presentation — template-paper (Beamer)
+% ============================================================
+% Customize the theme below. Popular options:
+%   \usetheme{metropolis}    % Modern, clean (needs metropolis pkg)
+%   \usetheme{Madrid}        % Classic with navigation
+%   \usetheme{Berlin}        % Sidebar navigation
+%   \usetheme{default}       % Minimal
+% ============================================================
+
+\documentclass[aspectratio=169]{beamer}
+
+% --- Theme ---
+\usetheme{default}
+\usecolortheme{default}
+
+% Clean up navigation
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+
+% --- Metadata ---
+\title{{{PRESENTATION\_TITLE}}}
+\subtitle{{{SUBTITLE}}}
+\author{{{Author One}} \and {{Author Two}}}
+\institute{{{Affiliation}}}
+\date{{{Date or Venue}}}
+
+% ============================================================
+\begin{document}
+
+% --- Title Slide ---
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% --- Outline ---
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+% ============================================================
+\section{Introduction}
+% ============================================================
+
+\begin{frame}{Motivation}
+    \begin{itemize}
+        \item {{Problem statement — why does this matter?}}
+        \item {{Gap in current approaches}}
+        \item {{Your key insight}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Research Questions}
+    \begin{enumerate}
+        \item {{RQ1: ...}}
+        \item {{RQ2: ...}}
+    \end{enumerate}
+\end{frame}
+
+% ============================================================
+\section{Background}
+% ============================================================
+
+\begin{frame}{Related Work}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{Prior Approaches}
+            \begin{itemize}
+                \item {{Approach A [Author, Year]}}
+                \item {{Approach B [Author, Year]}}
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \textbf{Limitations}
+            \begin{itemize}
+                \item {{Limitation 1}}
+                \item {{Limitation 2}}
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% ============================================================
+\section{Approach}
+% ============================================================
+
+\begin{frame}{Proposed Method}
+    \begin{itemize}
+        \item {{High-level description of your approach}}
+        \item {{Key technical contribution}}
+        \item {{What makes it different from prior work}}
+    \end{itemize}
+
+    % Uncomment to add a figure:
+    % \begin{center}
+    %     \includegraphics[width=0.7\linewidth]{figures/architecture.pdf}
+    % \end{center}
+\end{frame}
+
+\begin{frame}{System Architecture}
+    % Replace with your architecture diagram
+    \begin{center}
+        \textit{[Architecture diagram goes here]}
+    \end{center}
+\end{frame}
+
+% ============================================================
+\section{Results}
+% ============================================================
+
+\begin{frame}{Experimental Setup}
+    \begin{itemize}
+        \item \textbf{Datasets}: {{Dataset names and sizes}}
+        \item \textbf{Baselines}: {{Baseline methods}}
+        \item \textbf{Metrics}: {{Evaluation metrics}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Results}
+    % Sample results table
+    \begin{table}
+        \centering
+        \begin{tabular}{lcc}
+            \toprule
+            Method & Metric 1 & Metric 2 \\
+            \midrule
+            Baseline A & 0.00 & 0.00 \\
+            Baseline B & 0.00 & 0.00 \\
+            \textbf{Ours} & \textbf{0.00} & \textbf{0.00} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+% ============================================================
+\section{Conclusion}
+% ============================================================
+
+\begin{frame}{Summary}
+    \textbf{Contributions:}
+    \begin{enumerate}
+        \item {{Contribution 1}}
+        \item {{Contribution 2}}
+        \item {{Contribution 3}}
+    \end{enumerate}
+
+    \vspace{1em}
+    \textbf{Future Work:}
+    \begin{itemize}
+        \item {{Next steps}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Thank You}
+    \centering
+    \Large Thank you! Questions?
+
+    \vspace{1.5em}
+    \normalsize
+    {{email@example.com}} \\
+    {{https://your-project-url.github.io}}
+\end{frame}
+
+% --- Backup Slides ---
+\appendix
+
+\begin{frame}{Backup: Additional Details}
+    {{Extra content for Q\&A}}
+\end{frame}
+
+\end{document}

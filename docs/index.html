@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Project Dashboard</title>
+    <style>
+        :root {
+            --accent: #6366f1;
+            --accent-glow: rgba(99,102,241,0.3);
+            --success: #00c853;
+            --warning: #ff9900;
+            --danger: #ef4444;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --border: #2a2a2a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            border-bottom: 3px solid var(--accent);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .header .subtitle { color: var(--accent); font-size: 1rem; font-weight: 500; }
+        .header .venue { margin-top: 0.75rem; font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+
+        .status-banner {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-banner .phase {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-banner .detail { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem; }
+
+        .section { margin-bottom: 2rem; }
+
+        .section h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover { border-color: var(--accent); }
+        .card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-pending { background: rgba(255,153,0,0.15); color: var(--warning); border: 1px solid rgba(255,153,0,0.3); }
+        .badge-complete { background: rgba(0,200,83,0.15); color: var(--success); border: 1px solid rgba(0,200,83,0.3); }
+        .badge-active { background: rgba(99,102,241,0.15); color: var(--accent); border: 1px solid rgba(99,102,241,0.3); }
+
+        .downloads { list-style: none; }
+        .downloads li { margin-bottom: 0.5rem; }
+
+        .downloads a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .downloads a:hover { border-color: var(--accent); background: rgba(99,102,241,0.05); }
+        .downloads .dl-icon { font-size: 1.1rem; }
+        .downloads .dl-size { margin-left: auto; color: var(--text-secondary); font-size: 0.75rem; }
+
+        .timeline { position: relative; padding-left: 1.5rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--border); }
+
+        .timeline-item { position: relative; margin-bottom: 1rem; padding-left: 1rem; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.55rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            border: 2px solid var(--bg-dark);
+        }
+
+        .timeline-item.active::before { background: var(--accent); box-shadow: 0 0 6px var(--accent-glow); }
+        .timeline-item.done::before { background: var(--success); }
+        .timeline-date { font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; }
+        .timeline-label { font-size: 0.9rem; }
+
+        .phase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; }
+
+        .phase-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .phase-card .phase-num { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+        .phase-card .phase-name { font-size: 0.9rem; font-weight: 600; margin-top: 0.25rem; }
+        .phase-card.active { border-color: var(--accent); }
+        .phase-card.done { border-color: var(--success); }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{PROJECT_TITLE}}</h1>
+        <div class="subtitle">{{PAPER_TYPE}}</div>
+        <div class="venue">{{VENUE_NAME}}</div>
+    </div>
+
+    <div class="container">
+        <div class="status-banner">
+            <div class="phase">Current Phase: Initialization</div>
+            <div class="detail">Setting up project structure and filling in templates.</div>
+        </div>
+
+        <!-- Downloads Section -->
+        <div class="section">
+            <h2>Downloads</h2>
+            <ul class="downloads">
+                <li>
+                    <a href="#">
+                        <span class="dl-icon">&#128196;</span>
+                        <span>Paper / Proposal PDF</span>
+                        <span class="badge badge-pending">Coming Soon</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="dl-icon">&#127916;</span>
+                        <span>Presentation Slides</span>
+                        <span class="badge badge-pending">Coming Soon</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Phases Section -->
+        <div class="section">
+            <h2>Progress</h2>
+            <div class="phase-grid">
+                <div class="phase-card active">
+                    <div class="phase-num">Phase 1</div>
+                    <div class="phase-name">Setup</div>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-num">Phase 2</div>
+                    <div class="phase-name">Design</div>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-num">Phase 3</div>
+                    <div class="phase-name">Drafting</div>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-num">Phase 4</div>
+                    <div class="phase-name">Review</div>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-num">Phase 5</div>
+                    <div class="phase-name">Submit</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="section">
+            <h2>Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item active">
+                    <div class="timeline-date">{{DATE}}</div>
+                    <div class="timeline-label"><strong>Project started</strong></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">{{DATE}}</div>
+                    <div class="timeline-label">First draft complete</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">{{DATE}}</div>
+                    <div class="timeline-label">Internal review</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">{{DATE}}</div>
+                    <div class="timeline-label"><strong>Submission deadline</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Topics Section -->
+        <div class="section">
+            <h2>Key Topics</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <span class="badge badge-active">Primary</span>
+                    <h3>{{PRIMARY_TOPIC}}</h3>
+                    <p>{{DESCRIPTION}}</p>
+                </div>
+                <div class="card">
+                    <span class="badge badge-pending">Secondary</span>
+                    <h3>{{SECONDARY_TOPIC}}</h3>
+                    <p>{{DESCRIPTION}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        {{PROJECT_TITLE}} &middot; Built with template-paper
+    </div>
+</body>
+</html>

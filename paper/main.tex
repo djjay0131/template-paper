@@ -1,0 +1,111 @@
+% ============================================================
+% Sample Paper / Proposal — template-paper
+% ============================================================
+% Replace the document class with your venue's template:
+%   \documentclass[sigconf]{acmart}        % ACM
+%   \documentclass[conference]{IEEEtran}   % IEEE Conference
+%   \documentclass{article}                % Generic / arXiv
+%   \documentclass[runningheads]{llncs}    % Springer LNCS
+% ============================================================
+
+\documentclass[11pt, letterpaper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{microtype}
+
+% --- Metadata ---
+\title{{{PAPER\_TITLE}}}
+\author{
+    {{Author One}} \\
+    {{Affiliation}} \\
+    \texttt{{{email@example.com}}}
+    \and
+    {{Author Two}} \\
+    {{Affiliation}} \\
+    \texttt{{{email@example.com}}}
+}
+\date{}
+
+% ============================================================
+\begin{document}
+
+\maketitle
+
+% --- Abstract ---
+\begin{abstract}
+{{Write your abstract here. Summarize the problem, approach, key contributions, and results in 150--250 words.}}
+\end{abstract}
+
+% --- Introduction ---
+\section{Introduction}
+\label{sec:intro}
+
+{{Introduce the problem and its significance. State the research questions or goals. Summarize your contributions. Outline the paper structure.}}
+
+% --- Related Work ---
+\section{Related Work}
+\label{sec:related}
+
+{{Review prior work. Position your contributions relative to existing approaches. Organize by theme or chronology.}}
+
+% --- Methodology / Approach ---
+\section{Methodology}
+\label{sec:method}
+
+{{Describe your approach in detail. Include formal definitions, algorithms, or system architecture as needed.}}
+
+% --- Experiments / Evaluation ---
+\section{Evaluation}
+\label{sec:eval}
+
+{{Describe experimental setup, datasets, baselines, and metrics. Present results with tables and figures.}}
+
+% Uncomment and use for tables:
+% \begin{table}[h]
+%     \centering
+%     \caption{{{TABLE\_CAPTION}}}
+%     \label{tab:results}
+%     \begin{tabular}{lcc}
+%         \toprule
+%         Method & Metric 1 & Metric 2 \\
+%         \midrule
+%         Baseline & 0.00 & 0.00 \\
+%         Ours     & 0.00 & 0.00 \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+
+% Uncomment and use for figures:
+% \begin{figure}[h]
+%     \centering
+%     % \includegraphics[width=0.8\linewidth]{figures/example.pdf}
+%     \caption{{{FIGURE\_CAPTION}}}
+%     \label{fig:example}
+% \end{figure}
+
+% --- Discussion ---
+\section{Discussion}
+\label{sec:discussion}
+
+{{Discuss implications, limitations, and broader impact of your results.}}
+
+% --- Conclusion ---
+\section{Conclusion}
+\label{sec:conclusion}
+
+{{Summarize contributions and outline future work.}}
+
+% --- References ---
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
